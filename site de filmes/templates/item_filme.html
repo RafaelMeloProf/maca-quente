@@ -1,0 +1,79 @@
+<div class="col-sm-3" id="filmes-{{filme.id}}">
+  <a href="/{{filme.id}}"> 
+    <div class="card m-2" style="width: 100%">
+      <img src="..." class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">{{ filme.nome }}</h5>
+        <p class="card-text">
+          Some quick example text to build on the card title and make up the
+          bulk of the card's content.
+        </p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li
+          class="list-group-item {% if filme.nota >= 8.5 %} text-success{% elif filme.nota >= 6 and filme.nota < 8.5 %} text-warning{% else %}text-danger{% endif %}"
+        >
+          {{ filme.nota }}
+        </li>
+      </ul>
+      <div class="card-body">
+        <a
+          href="#"
+          class="card-link"
+          c-get="{{url_for('filmes.form_edit_filme',filme_id=filme.id)}}"
+          c-target="#form_filme"
+          >Editar</a
+        >
+        <a
+          c-delete="{{url_for('filmes.deletar_filme',filme_id=filme.id)}}"
+          c-remove-closest="#filmes-{{filme.id}}"
+          href="#"
+          class="card-link"
+          class="btn btn-outline-danger"
+          >Delete</a
+        >
+      </div>
+    </div>
+  </a>
+</div>
+
+<!--
+<tr id="filmes-{{filme.id}}">
+  <th scope="row">{{ filme.id }}</th>
+  <td>{{ filme.nome }}</td>
+  <td <td>
+    <div
+      class="{% if filme.nota >= 8.5 %} btn btn-success{% elif filme.nota >= 6 and filme.nota < 8.5 %} btn btn-warning{% else %}btn btn-danger{% endif %}"
+    >
+      {{ filme.nota }}
+    </div>
+  </td>
+  <td>
+    <button
+      class="btn btn-outline-secondary"
+      c-get="{{url_for('filmes.detalhe_filmes',filme_id=filme.id)}}"
+      c-target="#exibir-filme"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+    >
+      Ver
+    </button>
+
+    <button
+      class="btn btn-outline-success"
+      c-get="{{url_for('filmes.form_edit_filme',filme_id=filme.id)}}"
+      c-target="#form_filme"
+    >
+      Editar
+    </button>
+
+    <button
+      class="btn btn-outline-danger"
+      c-delete="{{url_for('filmes.deletar_filme',filme_id=filme.id)}}"
+      c-remove-closest="tr"
+    >
+      Deletar
+    </button>
+  </td>
+</tr>
+-->

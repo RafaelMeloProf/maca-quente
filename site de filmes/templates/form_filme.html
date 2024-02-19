@@ -1,0 +1,29 @@
+<form class="c-form"
+      {% if filme %}
+        action="{{ url_for('filmes.altualizar_filme', filme_id=filme.id) }}" 
+      {% else %}
+        action="/" 
+      {% endif %}
+      method="{% if filme %}PUT{% else %}POST{% endif %}" 
+      {% if filme %}
+        c-swap="#filmes-{{filme.id}}"
+      {% else %}
+        c-append="#lista-filmes"
+      {% endif %}
+      c-reload-container="true">
+    <div class="mb-3">
+      <label class="form-label">Nome</label>
+      <input type="text" class="form-control fundo_form " name="nome"{% if filme %}value="{{filme.nome}}"{% endif %}>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Nota</label>
+      <input type="text" class="form-control fundo_form" name="nota"{% if filme %}value="{{filme.nota}}"{% endif %}>
+    </div>
+   
+    <button type="submit" class="btn btn-primary"> 
+      {% if filme %}Salvar{% else %}Criar{% endif %}
+    </button>
+
+</form>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
