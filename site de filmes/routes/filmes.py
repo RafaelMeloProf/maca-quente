@@ -22,8 +22,9 @@ def lista_filmes():
 ##------------inserir filme X----------------##
 @filmes_route.route('/', methods=['POST'])
 def inserir_filme():
-    data = request.json
-    filme_novo=Filme.create(nome=data["nome"],nota=float(data["nota"]))
+    nome = request.form.get("nome")
+    nota = request.form.get("nota")
+    filme_novo=Filme.create(nome=nome,nota=float(nota))
     print(filme_novo.nome,type(filme_novo.nota))
     
     
